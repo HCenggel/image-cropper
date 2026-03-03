@@ -83,6 +83,104 @@
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
     }
 
+    /* Language Switcher */
+    .language-switcher {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      animation: fadeInDown 0.5s ease-out;
+    }
+
+    .language-btn {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.15) 100%);
+      color: white;
+      padding: 10px 22px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 0.95em;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      backdrop-filter: blur(15px);
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .language-btn:hover {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.25) 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+      border-color: rgba(255, 255, 255, 0.6);
+    }
+
+    .language-btn i {
+      font-size: 1.1em;
+    }
+
+    .language-btn .fa-chevron-down {
+      font-size: 0.8em;
+      transition: transform 0.3s;
+    }
+
+    .language-btn:hover .fa-chevron-down {
+      transform: rotate(180deg);
+    }
+
+    .language-dropdown {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      min-width: 160px;
+      padding: 8px 0;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1001;
+    }
+
+    .language-switcher:hover .language-dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .language-option {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 22px;
+      color: #444;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .language-option:hover {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding-left: 28px;
+    }
+
+    .language-option.active {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      font-weight: 600;
+    }
+
+    .language-option i {
+      font-size: 1.3em;
+      width: 28px;
+      text-align: center;
+    }
+
     /* Features Section */
     .features {
       background: white;
@@ -345,6 +443,23 @@
 
     /* Responsive */
     @media (max-width: 768px) {
+      .language-switcher {
+        top: 15px;
+        right: 15px;
+      }
+
+      .language-btn {
+        padding: 8px 16px;
+        font-size: 0.85em;
+      }
+
+      .language-btn span {
+        max-width: 80px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
       .header h1 {
         font-size: 2.5em;
       }
@@ -361,69 +476,53 @@
   </style>
 </head>
 <body>
+  <!-- Language Switcher -->
+  <div class="language-switcher">
+    <div class="language-btn">
+      <i class="fas fa-globe"></i>
+      <span id="currentLang">🇬🇧 English</span>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+    <div class="language-dropdown" id="languageDropdown">
+      <!-- Language options will be populated by JavaScript -->
+    </div>
+  </div>
+
   <!-- Header -->
   <div class="container">
     <div class="header">
-      <h1>🖼️ ImageCropper</h1>
-      <p>Lightweight, pure JavaScript image cropping library - No dependencies, easy integration</p>
-      <div class="badges">
+      <h1 id="pageTitle">🖼️ ImageCropper</h1>
+      <p id="pageDescription">Lightweight, pure JavaScript image cropping library - No dependencies, easy integration</p>
+      <div class="badges" id="badges">
         <span class="badge">⚡ Lightweight & Fast</span>
         <span class="badge">🎯 No Dependencies</span>
         <span class="badge">💡 Easy to Use</span>
       </div>
-      <a href="demo/" class="cta-button">
+
+      <a href="demo/" class="cta-button" id="ctaButton">
         <i class="fas fa-play"></i> View Demo
       </a>
     </div>
 
     <!-- Features -->
     <div class="features">
-      <h2>✨ Core Features</h2>
-      <div class="feature-grid">
-        <div class="feature-card">
-          <i class="fas fa-arrows-alt"></i>
-          <h3>Image Transformations</h3>
-          <p>Support drag/pan, scroll to zoom (0.1x - 10x), rotate, flip horizontally/vertically</p>
-        </div>
-        <div class="feature-card">
-          <i class="fas fa-crop-alt"></i>
-          <h3>Crop Modes</h3>
-          <p>Free mode (resizable) and Fixed mode (fixed size) to meet different needs</p>
-        </div>
-        <div class="feature-card">
-          <i class="fas fa-desktop"></i>
-          <h3>Desktop Optimized</h3>
-          <p>Optimized for mouse interactions on desktop platforms with smooth experience</p>
-        </div>
-        <div class="feature-card">
-          <i class="fas fa-file-export"></i>
-          <h3>Flexible Export</h3>
-          <p>Export as JPEG or PNG with adjustable quality (0.1 - 1.0), returns Base64 data</p>
-        </div>
-        <div class="feature-card">
-          <i class="fas fa-code"></i>
-          <h3>Pure JavaScript</h3>
-          <p>No framework dependencies, lightweight code, quick integration into any project</p>
-        </div>
-        <div class="feature-card">
-          <i class="fas fa-palette"></i>
-          <h3>Canvas Rendering</h3>
-          <p>Based on Canvas API, minimal CSS dependency, excellent performance</p>
-        </div>
+      <h2 id="featuresTitle">✨ Core Features</h2>
+      <div class="feature-grid" id="featureGrid">
+        <!-- Feature cards will be populated by JavaScript -->
       </div>
     </div>
 
     <!-- Quick Start Code -->
     <div class="code-section">
-      <h2>🚀 Quick Start</h2>
+      <h2 id="codeTitle">🚀 Quick Start</h2>
       <div class="code-container">
         <div class="code-header">
           <span class="red"></span>
           <span class="yellow"></span>
           <span class="green"></span>
-          <span class="language">JavaScript</span>
+          <span class="language" id="jsLangLabel">JavaScript</span>
         </div>
-        <pre><span class="comment">// Create a cropper instance</span>
+        <pre id="jsCode"><span class="comment">// Create a cropper instance</span>
 <span class="keyword">const</span> cropper = <span class="keyword">new</span> <span class="function">ImageCropper</span>(<span class="string">'#container'</span>, {
   width: <span class="number">500</span>,
   height: <span class="number">500</span>,
@@ -443,9 +542,9 @@ console.<span class="function">log</span>(base64Data);</pre>
           <span class="red"></span>
           <span class="yellow"></span>
           <span class="green"></span>
-          <span class="language">HTML</span>
+          <span class="language" id="htmlLangLabel">HTML</span>
         </div>
-        <pre><span class="comment">&lt;!-- Include library file --&gt;</span>
+        <pre id="htmlCode"><span class="comment">&lt;!-- Include library file --&gt;</span>
 &lt;<span class="keyword">script</span> src=<span class="string">"image-cropper.js"</span>&gt;&lt;/<span class="keyword">script</span>&gt;
 
 <span class="comment">&lt;!-- Create container --&gt;</span>
@@ -455,82 +554,162 @@ console.<span class="function">log</span>(base64Data);</pre>
 
     <!-- API -->
     <div class="api-section">
-      <h2>📚 Main APIs</h2>
-      <div class="api-grid">
-        <div class="api-card">
-          <h3>loadImage(src)</h3>
-          <p>Load an image from URL or base64 string</p>
-          <span class="method">Promise</span>
-        </div>
-        <div class="api-card">
-          <h3>rotate(degrees)</h3>
-          <p>Rotate the image by specified degrees</p>
-          <span class="method">void</span>
-        </div>
-        <div class="api-card">
-          <h3>flipHorizontal()</h3>
-          <p>Flip the image horizontally</p>
-          <span class="method">void</span>
-        </div>
-        <div class="api-card">
-          <h3>flipVertical()</h3>
-          <p>Flip the image vertically</p>
-          <span class="method">void</span>
-        </div>
-        <div class="api-card">
-          <h3>setScale(scale)</h3>
-          <p>Set the image scale (0.1 to 10)</p>
-          <span class="method">void</span>
-        </div>
-        <div class="api-card">
-          <h3>setCropMode(mode)</h3>
-          <p>Set the crop mode</p>
-          <span class="method">void</span>
-        </div>
-        <div class="api-card">
-          <h3>export(format, quality)</h3>
-          <p>Export the cropped image as base64 data URL</p>
-          <span class="method">string</span>
-        </div>
-        <div class="api-card">
-          <h3>reset()</h3>
-          <p>Reset all image transformations to default state</p>
-          <span class="method">void</span>
-        </div>
+      <h2 id="apiTitle">📚 Main APIs</h2>
+      <div class="api-grid" id="apiGrid">
+        <!-- API cards will be populated by JavaScript -->
       </div>
     </div>
 
     <!-- Links -->
     <div class="links-section">
-      <h2>🔗 Quick Links</h2>
-      <div class="links-grid">
-        <a href="demo/" class="link-card">
-          <i class="fas fa-play-circle"></i>
-          <span>Live Demo</span>
-        </a>
-        <a href="README.md" class="link-card">
-          <i class="fas fa-file-code"></i>
-          <span>Documentation (EN)</span>
-        </a>
-        <a href="README_CN.md" class="link-card">
-          <i class="fas fa-book"></i>
-          <span>Documentation (ZH)</span>
-        </a>
-        <a href="image-cropper.js" class="link-card">
-          <i class="fas fa-file-code"></i>
-          <span>Full Version (21KB)</span>
-        </a>
-        <a href="image-cropper.min.js" class="link-card">
-          <i class="fas fa-compress"></i>
-          <span>Minified Version (10KB)</span>
-        </a>
+      <h2 id="linksTitle">🔗 Quick Links</h2>
+      <div class="links-grid" id="linksGrid">
+        <!-- Link cards will be populated by JavaScript -->
       </div>
     </div>
 
     <!-- Footer -->
     <div class="footer">
-      <p>© 2024 ImageCropper - MIT License</p>
+      <p id="footerText">© 2024 ImageCropper - MIT License</p>
     </div>
   </div>
+
+  <script src="assets/languages.js"></script>
+  <script>
+    // Default language
+    const DEFAULT_LANG = 'en';
+    const STORAGE_KEY = 'imagecropper-lang';
+
+    // Get saved language or use default
+    function getSavedLanguage() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved && languages[saved]) {
+          return saved;
+        }
+      } catch (e) {
+        console.log('localStorage not available');
+      }
+      return DEFAULT_LANG;
+    }
+
+    // Save language preference
+    function saveLanguage(langCode) {
+      try {
+        localStorage.setItem(STORAGE_KEY, langCode);
+      } catch (e) {
+        console.log('localStorage not available');
+      }
+    }
+
+    // Get current language
+    let currentLang = getSavedLanguage();
+
+    // Update page content
+    function updateContent(langCode) {
+      const lang = languages[langCode];
+      if (!lang) return;
+
+      // Update HTML lang attribute
+      document.documentElement.lang = langCode;
+
+      // Update page title
+      document.title = lang.html.title;
+
+      // Update header
+      document.getElementById('pageTitle').textContent = lang.html.header.title;
+      document.getElementById('pageDescription').textContent = lang.html.header.description;
+      
+      // Update badges
+      const badgesContainer = document.getElementById('badges');
+      badgesContainer.innerHTML = lang.html.header.badges.map(badge => 
+        `<span class="badge">${badge}</span>`
+      ).join('');
+
+      // Update CTA button
+      document.getElementById('ctaButton').innerHTML = lang.html.header.ctaButton;
+
+      // Update features section
+      document.getElementById('featuresTitle').textContent = lang.html.features.title;
+      const featureGrid = document.getElementById('featureGrid');
+      featureGrid.innerHTML = lang.html.features.items.map(item => `
+        <div class="feature-card">
+          <i class="${item.icon}"></i>
+          <h3>${item.title}</h3>
+          <p>${item.description}</p>
+        </div>
+      `).join('');
+
+      // Update code section
+      document.getElementById('codeTitle').textContent = lang.html.code.title;
+      document.getElementById('jsLangLabel').textContent = lang.html.code.jsTitle;
+      document.getElementById('jsCode').innerHTML = lang.html.code.jsCode;
+      document.getElementById('htmlLangLabel').textContent = lang.html.code.htmlTitle;
+      document.getElementById('htmlCode').innerHTML = lang.html.code.htmlCode;
+
+      // Update API section
+      document.getElementById('apiTitle').textContent = lang.html.api.title;
+      const apiGrid = document.getElementById('apiGrid');
+      apiGrid.innerHTML = lang.html.api.items.map(item => `
+        <div class="api-card">
+          <h3>${item.name}</h3>
+          <p>${item.description}</p>
+          <span class="method">${item.method}</span>
+        </div>
+      `).join('');
+
+      // Update links section
+      document.getElementById('linksTitle').textContent = lang.html.links.title;
+      const linksGrid = document.getElementById('linksGrid');
+      linksGrid.innerHTML = lang.html.links.items.map(item => `
+        <a href="${item.href}" class="link-card">
+          <i class="${item.icon}"></i>
+          <span>${item.name}</span>
+        </a>
+      `).join('');
+
+      // Update footer
+      document.getElementById('footerText').textContent = lang.html.footer;
+    }
+
+    // Render language dropdown options
+    function renderLanguageOptions() {
+      const dropdownEl = document.getElementById('languageDropdown');
+      const currentLangEl = document.getElementById('currentLang');
+      
+      dropdownEl.innerHTML = Object.values(languages).map(lang => `
+        <div class="language-option ${lang.code === currentLang ? 'active' : ''}" data-lang="${lang.code}">
+          <i class="lang-icon">${lang.icon}</i>
+          <span>${lang.name}</span>
+        </div>
+      `).join('');
+
+      // Update current language display
+      const currentLanguage = languages[currentLang];
+      if (currentLanguage) {
+        currentLangEl.innerHTML = `${currentLanguage.icon} ${currentLanguage.name}`;
+      }
+
+      // Add click handlers
+      dropdownEl.querySelectorAll('.language-option').forEach(option => {
+        option.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const langCode = option.dataset.lang;
+          if (langCode !== currentLang) {
+            currentLang = langCode;
+            saveLanguage(langCode);
+            updateContent(langCode);
+            renderLanguageOptions();
+          }
+        });
+      });
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      updateContent(currentLang);
+      renderLanguageOptions();
+    });
+  </script>
 </body>
 </html>
