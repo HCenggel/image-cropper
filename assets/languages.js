@@ -124,16 +124,6 @@ console.<span class="function">log</span>(base64Data);`,
           },
           {
             icon: 'fas fa-file-code',
-            name: 'Documentation (EN)',
-            href: 'README.md'
-          },
-          {
-            icon: 'fas fa-book',
-            name: 'Documentation (ZH)',
-            href: 'README_CN.md'
-          },
-          {
-            icon: 'fas fa-file-code',
             name: 'Full Version (21KB)',
             href: 'image-cropper.js'
           },
@@ -269,16 +259,6 @@ console.<span class="function">log</span>(base64Data);`,
             icon: 'fas fa-play-circle',
             name: '在线演示',
             href: 'demo/'
-          },
-          {
-            icon: 'fas fa-file-code',
-            name: '英文文档',
-            href: 'README.md'
-          },
-          {
-            icon: 'fas fa-book',
-            name: '中文文档',
-            href: 'README_CN.md'
           },
           {
             icon: 'fas fa-file-code',
@@ -420,16 +400,6 @@ console.<span class="function">log</span>(base64Data);`,
           },
           {
             icon: 'fas fa-file-code',
-            name: 'ドキュメント (EN)',
-            href: 'README.md'
-          },
-          {
-            icon: 'fas fa-book',
-            name: 'ドキュメント (ZH)',
-            href: 'README_CN.md'
-          },
-          {
-            icon: 'fas fa-file-code',
             name: '完全版 (21KB)',
             href: 'image-cropper.js'
           },
@@ -565,16 +535,6 @@ console.<span class="function">log</span>(base64Data);`,
             icon: 'fas fa-play-circle',
             name: '라이브 데모',
             href: 'demo/'
-          },
-          {
-            icon: 'fas fa-file-code',
-            name: '문서 (EN)',
-            href: 'README.md'
-          },
-          {
-            icon: 'fas fa-book',
-            name: '문서 (ZH)',
-            href: 'README_CN.md'
           },
           {
             icon: 'fas fa-file-code',
