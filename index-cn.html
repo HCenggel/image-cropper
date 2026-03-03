@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ImageCropper - Lightweight Image Cropper Library</title>
+  <title>ImageCropper - 轻量级图片裁剪库</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     * {
@@ -365,57 +365,57 @@
   <div class="container">
     <div class="header">
       <h1>🖼️ ImageCropper</h1>
-      <p>Lightweight, pure JavaScript image cropping library - No dependencies, easy integration</p>
+      <p>轻量级、纯JavaScript图片裁剪库 - 无依赖，易集成</p>
       <div class="badges">
-        <span class="badge">⚡ Lightweight & Fast</span>
-        <span class="badge">🎯 No Dependencies</span>
-        <span class="badge">💡 Easy to Use</span>
+        <span class="badge">⚡ 轻量快速</span>
+        <span class="badge">🎯 无依赖</span>
+        <span class="badge">💡 易于使用</span>
       </div>
       <a href="demo/" class="cta-button">
-        <i class="fas fa-play"></i> View Demo
+        <i class="fas fa-play"></i> 查看演示
       </a>
     </div>
 
     <!-- Features -->
     <div class="features">
-      <h2>✨ Core Features</h2>
+      <h2>✨ 核心特性</h2>
       <div class="feature-grid">
         <div class="feature-card">
           <i class="fas fa-arrows-alt"></i>
-          <h3>Image Transformations</h3>
-          <p>Support drag/pan, scroll to zoom (0.1x - 10x), rotate, flip horizontally/vertically</p>
+          <h3>图片变换</h3>
+          <p>支持拖动平移、滚轮缩放（0.1x - 10x）、旋转、水平/垂直翻转等操作</p>
         </div>
         <div class="feature-card">
           <i class="fas fa-crop-alt"></i>
-          <h3>Crop Modes</h3>
-          <p>Free mode (resizable) and Fixed mode (fixed size) to meet different needs</p>
+          <h3>裁剪模式</h3>
+          <p>自由模式（可调整大小）和固定模式（固定尺寸），满足不同需求</p>
         </div>
         <div class="feature-card">
           <i class="fas fa-desktop"></i>
-          <h3>Desktop Optimized</h3>
-          <p>Optimized for mouse interactions on desktop platforms with smooth experience</p>
+          <h3>桌面优化</h3>
+          <p>专门针对桌面端鼠标操作优化，提供流畅的交互体验</p>
         </div>
         <div class="feature-card">
           <i class="fas fa-file-export"></i>
-          <h3>Flexible Export</h3>
-          <p>Export as JPEG or PNG with adjustable quality (0.1 - 1.0), returns Base64 data</p>
+          <h3>灵活导出</h3>
+          <p>支持JPEG和PNG格式导出，质量可调（0.1 - 1.0），返回Base64数据</p>
         </div>
         <div class="feature-card">
           <i class="fas fa-code"></i>
-          <h3>Pure JavaScript</h3>
-          <p>No framework dependencies, lightweight code, quick integration into any project</p>
+          <h3>纯JavaScript</h3>
+          <p>无需任何框架依赖，轻量级代码，快速集成到任何项目</p>
         </div>
         <div class="feature-card">
           <i class="fas fa-palette"></i>
-          <h3>Canvas Rendering</h3>
-          <p>Based on Canvas API, minimal CSS dependency, excellent performance</p>
+          <h3>Canvas渲染</h3>
+          <p>基于Canvas API绘制，最小化CSS依赖，性能优异</p>
         </div>
       </div>
     </div>
 
     <!-- Quick Start Code -->
     <div class="code-section">
-      <h2>🚀 Quick Start</h2>
+      <h2>🚀 快速开始</h2>
       <div class="code-container">
         <div class="code-header">
           <span class="red"></span>
@@ -423,17 +423,17 @@
           <span class="green"></span>
           <span class="language">JavaScript</span>
         </div>
-        <pre><span class="comment">// Create a cropper instance</span>
+        <pre><span class="comment">// 创建裁剪器实例</span>
 <span class="keyword">const</span> cropper = <span class="keyword">new</span> <span class="function">ImageCropper</span>(<span class="string">'#container'</span>, {
   width: <span class="number">500</span>,
   height: <span class="number">500</span>,
   cropMode: <span class="string">'free'</span>
 });
 
-<span class="comment">// Load an image</span>
+<span class="comment">// 加载图片</span>
 <span class="keyword">await</span> cropper.<span class="function">loadImage</span>(<span class="string">'path/to/image.jpg'</span>);
 
-<span class="comment">// Export the cropped image</span>
+<span class="comment">// 导出裁剪后的图片</span>
 <span class="keyword">const</span> base64Data = cropper.<span class="function">export</span>(<span class="string">'image/jpeg'</span>, <span class="number">0.9</span>);
 console.<span class="function">log</span>(base64Data);</pre>
       </div>
@@ -445,56 +445,56 @@ console.<span class="function">log</span>(base64Data);</pre>
           <span class="green"></span>
           <span class="language">HTML</span>
         </div>
-        <pre><span class="comment">&lt;!-- Include library file --&gt;</span>
+        <pre><span class="comment">&lt;!-- 引入库文件 --&gt;</span>
 &lt;<span class="keyword">script</span> src=<span class="string">"image-cropper.js"</span>&gt;&lt;/<span class="keyword">script</span>&gt;
 
-<span class="comment">&lt;!-- Create container --&gt;</span>
+<span class="comment">&lt;!-- 创建容器 --&gt;</span>
 &lt;<span class="keyword">div</span> id=<span class="string">"container"</span>&gt;&lt;/<span class="keyword">div</span>&gt;</pre>
       </div>
     </div>
 
     <!-- API -->
     <div class="api-section">
-      <h2>📚 Main APIs</h2>
+      <h2>📚 主要API</h2>
       <div class="api-grid">
         <div class="api-card">
           <h3>loadImage(src)</h3>
-          <p>Load an image from URL or base64 string</p>
+          <p>从URL或base64字符串加载图片</p>
           <span class="method">Promise</span>
         </div>
         <div class="api-card">
           <h3>rotate(degrees)</h3>
-          <p>Rotate the image by specified degrees</p>
+          <p>按指定角度旋转图片</p>
           <span class="method">void</span>
         </div>
         <div class="api-card">
           <h3>flipHorizontal()</h3>
-          <p>Flip the image horizontally</p>
+          <p>水平翻转图片</p>
           <span class="method">void</span>
         </div>
         <div class="api-card">
           <h3>flipVertical()</h3>
-          <p>Flip the image vertically</p>
+          <p>垂直翻转图片</p>
           <span class="method">void</span>
         </div>
         <div class="api-card">
           <h3>setScale(scale)</h3>
-          <p>Set the image scale (0.1 to 10)</p>
+          <p>设置图片缩放比例</p>
           <span class="method">void</span>
         </div>
         <div class="api-card">
           <h3>setCropMode(mode)</h3>
-          <p>Set the crop mode</p>
+          <p>设置裁剪模式</p>
           <span class="method">void</span>
         </div>
         <div class="api-card">
           <h3>export(format, quality)</h3>
-          <p>Export the cropped image as base64 data URL</p>
+          <p>导出裁剪后的图片</p>
           <span class="method">string</span>
         </div>
         <div class="api-card">
           <h3>reset()</h3>
-          <p>Reset all image transformations to default state</p>
+          <p>重置所有图片变换</p>
           <span class="method">void</span>
         </div>
       </div>
@@ -502,27 +502,27 @@ console.<span class="function">log</span>(base64Data);</pre>
 
     <!-- Links -->
     <div class="links-section">
-      <h2>🔗 Quick Links</h2>
+      <h2>🔗 快速链接</h2>
       <div class="links-grid">
         <a href="demo/" class="link-card">
           <i class="fas fa-play-circle"></i>
-          <span>Live Demo</span>
+          <span>在线演示</span>
         </a>
         <a href="README.md" class="link-card">
           <i class="fas fa-file-code"></i>
-          <span>Documentation (EN)</span>
+          <span>英文文档</span>
         </a>
         <a href="README_CN.md" class="link-card">
           <i class="fas fa-book"></i>
-          <span>Documentation (ZH)</span>
+          <span>中文文档</span>
         </a>
         <a href="image-cropper.js" class="link-card">
           <i class="fas fa-file-code"></i>
-          <span>Full Version (21KB)</span>
+          <span>完整版 (21KB)</span>
         </a>
         <a href="image-cropper.min.js" class="link-card">
           <i class="fas fa-compress"></i>
-          <span>Minified Version (10KB)</span>
+          <span>压缩版 (10KB)</span>
         </a>
       </div>
     </div>
