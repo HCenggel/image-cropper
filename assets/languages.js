@@ -134,7 +134,7 @@ console.<span class="function">log</span>(base64Data);`,
           }
         ]
       },
-      footer: '© 2024 ImageCropper - MIT License'
+      footer: '<a href="https://github.com/HCenggel/image-cropper" style="color: white; text-decoration: none; margin-right: 20px;"><i class="fab fa-github"></i> GitHub</a> © 2024 ImageCropper - MIT License'
     }
   },
   zh: {
@@ -272,7 +272,7 @@ console.<span class="function">log</span>(base64Data);`,
           }
         ]
       },
-      footer: '© 2024 ImageCropper - MIT License'
+      footer: '<a href="https://github.com/HCenggel/image-cropper" style="color: white; text-decoration: none; margin-right: 20px;"><i class="fab fa-github"></i> GitHub</a> © 2024 ImageCropper - MIT License'
     }
   },
   ja: {
@@ -410,7 +410,7 @@ console.<span class="function">log</span>(base64Data);`,
           }
         ]
       },
-      footer: '© 2024 ImageCropper - MIT License'
+      footer: '<a href="https://github.com/HCenggel/image-cropper" style="color: white; text-decoration: none; margin-right: 20px;"><i class="fab fa-github"></i> GitHub</a> © 2024 ImageCropper - MIT License'
     }
   },
   ko: {
@@ -548,7 +548,7 @@ console.<span class="function">log</span>(base64Data);`,
           }
         ]
       },
-      footer: '© 2024 ImageCropper - MIT License'
+      footer: '<a href="https://github.com/HCenggel/image-cropper" style="color: white; text-decoration: none; margin-right: 20px;"><i class="fab fa-github"></i> GitHub</a> © 2024 ImageCropper - MIT License'
     }
   }
 };

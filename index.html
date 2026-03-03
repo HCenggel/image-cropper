@@ -418,6 +418,20 @@
       opacity: 0.8;
     }
 
+    .footer a {
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer a:hover {
+      opacity: 1;
+      transform: translateY(-2px);
+    }
+
     /* Animations */
     @keyframes fadeInDown {
       from {
@@ -570,7 +584,7 @@ console.<span class="function">log</span>(base64Data);</pre>
 
     <!-- Footer -->
     <div class="footer">
-      <p id="footerText">© 2024 ImageCropper - MIT License</p>
+      <p id="footerText"><a href="https://github.com/HCenggel/image-cropper" style="color: white; text-decoration: none; margin-right: 20px;"><i class="fab fa-github"></i> GitHub</a> © 2024 ImageCropper - MIT License</p>
     </div>
   </div>
 
@@ -669,7 +683,7 @@ console.<span class="function">log</span>(base64Data);</pre>
       `).join('');
 
       // Update footer
-      document.getElementById('footerText').textContent = lang.html.footer;
+      document.getElementById('footerText').innerHTML = lang.html.footer;
     }
 
     // Render language dropdown options
