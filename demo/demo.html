@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>图片裁剪库演示</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 1200px;
+      margin: 10px auto;
+      padding: 10px;
+    }
+    .container {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .left-panel {
+      flex: 0 0 auto;
+      min-width: 200px;
+    }
+    .center-panel {
+      flex: 1;
+      min-width: 200px;
+    }
+    .right-panel {
+      flex: 0 0 auto;
+    }
+    .left-panel h3,
+    .center-panel h3 {
+      margin-top: 0;
+    }
+    .control-group {
+      margin-bottom: 20px;
+    }
+    .control-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    button {
+      width: 100%;
+      padding: 8px 12px;
+      margin-bottom: 8px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+    input[type="file"] {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    select, input[type="number"] {
+      width: 100%;
+      padding: 6px;
+      margin-bottom: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    .preview-container {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .preview-container img {
+      max-width: 100%;
+      border: 2px solid #007bff;
+      border-radius: 4px;
+      margin-top: 10px;
+    }
+    .info {
+      margin-top: 10px;
+      padding: 10px;
+      background: #f8f9fa;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <h1>图片裁剪库演示</h1>
+  
+  <div class="container">
+    <div class="left-panel">
+      <h3>导出预览</h3>
+      <div class="preview-container">
+        <div id="preview"></div>
+        <div class="info" id="info"></div>
+      </div>
+    </div>
+
+    <div class="center-panel">
+      <h3>图片加载</h3>
+      <div class="control-group">
+        <label>选择图片</label>
+        <input type="file" id="imageInput" accept="image/*">
+      </div>
+      
+      <h3>裁剪模式</h3>
+      <div class="control-group">
+        <label>模式</label>
+        <select id="cropMode">
+          <option value="free">自由模式 (可调整大小)</option>
+          <option value="fixed">固定模式 (150x150)</option>
+        </select>
+      </div>
+      
+      <h3>图片变换</h3>
+      <div class="control-group">
+        <button id="rotateLeft">向左旋转 90°</button>
+        <button id="rotateRight">向右旋转 90°</button>
+        <button id="flipHorizontal">水平翻转</button>
+        <button id="flipVertical">垂直翻转</button>
+        <button id="reset">重置</button>
+      </div>
+      
+      <h3>导出</h3>
+      <div class="control-group">
+        <label>格式</label>
+        <select id="exportFormat">
+          <option value="image/jpeg">JPEG</option>
+          <option value="image/png">PNG</option>
+        </select>
+        <label>质量 (0.1 - 1.0)</label>
+        <input type="number" id="exportQuality" min="0.1" max="1.0" step="0.1" value="0.9">
+        <button id="exportBtn">导出图片</button>
+      </div>
+    </div>
+    
+    <div class="right-panel">
+      <div id="cropper"></div>
+    </div>
+  </div>
+
+  <script src="../image-cropper.min.js"></script>
+  <script>
+    const cropper = new ImageCropper('#cropper', {
+      width: 500,
+      height: 500,
+      cropMode: 'free',
+      cropSize: { width: 150, height: 150 },
+      rotateIncrement: 90
+    });
+
+    const imageInput = document.getElementById('imageInput');
+    const cropModeSelect = document.getElementById('cropMode');
+    const rotateLeftBtn = document.getElementById('rotateLeft');
+    const rotateRightBtn = document.getElementById('rotateRight');
+    const flipHorizontalBtn = document.getElementById('flipHorizontal');
+    const flipVerticalBtn = document.getElementById('flipVertical');
+    const resetBtn = document.getElementById('reset');
+    const exportBtn = document.getElementById('exportBtn');
+    const exportFormat = document.getElementById('exportFormat');
+    const exportQuality = document.getElementById('exportQuality');
+    const preview = document.getElementById('preview');
+    const info = document.getElementById('info');
+
+    imageInput.addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = async (event) => {
+          await cropper.loadImage(event.target.result);
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    cropModeSelect.addEventListener('change', (e) => {
+      cropper.setCropMode(e.target.value);
+    });
+
+    rotateLeftBtn.addEventListener('click', () => {
+      cropper.rotate(-90);
+    });
+
+    rotateRightBtn.addEventListener('click', () => {
+      cropper.rotate(90);
+    });
+
+    flipHorizontalBtn.addEventListener('click', () => {
+      cropper.flipHorizontal();
+    });
+
+    flipVerticalBtn.addEventListener('click', () => {
+      cropper.flipVertical();
+    });
+
+    resetBtn.addEventListener('click', () => {
+      cropper.reset();
+    });
+
+    exportBtn.addEventListener('click', () => {
+      try {
+        const format = exportFormat.value;
+        const quality = parseFloat(exportQuality.value);
+        const dataUrl = cropper.export(format, quality);
+        
+        preview.innerHTML = `<img src="${dataUrl}" alt="导出的图片">`;
+        info.textContent = `格式: ${format}, 质量: ${quality}, Base64长度: ${dataUrl.length} 字符`;
+      } catch (error) {
+        alert('请先加载图片');
+      }
+    });
+  </script>
+</body>
+</html>
